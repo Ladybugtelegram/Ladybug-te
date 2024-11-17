@@ -14,6 +14,7 @@
     "yt-search": "",
     "node-cron": "^2.0",
     "axios": "^0.21.1",  
+    "@distube/ytdl-core": "",
     "cfonts": "^2.0.0",  
     "moment-timezone": "^0.5.34",  
     "performance-now": "^2.1.0",
