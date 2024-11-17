@@ -11,6 +11,7 @@
     "chalk": "^4.1.2",  
     "cheerio": "~1.0.0-rc.5",
     "node-fetch": "^2.6.7", 
+    "yt-search": "",
     "node-cron": "^2.0",
     "axios": "^0.21.1",  
     "cfonts": "^2.0.0",  
