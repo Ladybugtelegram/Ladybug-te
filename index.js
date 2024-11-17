@@ -36,15 +36,14 @@ neww = performance.now()
 oldd = performance.now()
 uptime = process.uptime()
 
-const nomeBot = "Nodz Bot";
+const nomeBot = "Lady Bot";
 const master = `
 Informações do criador:
-Telegram: t.me/@GiulianNT
-WhatsApp: wa.me/5517997285572
-Youtube: @giulianbandeira
+insta:comedor_di_primas
+
 `;
 
-const banner = cfonts.render(("NODZ|BOT"), {
+const banner = cfonts.render(("LADY|BOT"), {
 font: "block",
 align: "center",
 gradient: ["magenta","red"]
@@ -52,7 +51,7 @@ gradient: ["magenta","red"]
 
 console.log(banner.string)
 console.log(chalk.green(master));
-console.log("Bot Online");
+console.log("A lady está online metendo");
 
 bot.on('message', async (msg) => {
   const chatId = msg.chat.id;
