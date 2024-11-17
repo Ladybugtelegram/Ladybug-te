@@ -7,13 +7,13 @@
     "start": "node index.js"
   },
   "dependencies": {
-    "node-telegram-bot-api": "",
-    "chalk": "",
-    "node-fetch": "",
-    "axios": "",
-    "cfonts": "",
-    "moment-timezone": "",
-    "performance-now": "",
+    "node-telegram-bot-api": "^0.52.0",  // Versão anterior que usa CommonJS
+    "chalk": "^4.1.2",  // Versão anterior que funciona com CommonJS
+    "node-fetch": "^2.6.7",  // Versão compatível com CommonJS
+    "axios": "^0.21.1",  // Versão compatível com CommonJS
+    "cfonts": "^2.0.0",  // Versão compatível com CommonJS
+    "moment-timezone": "^0.5.34",  // Versão anterior
+    "performance-now": "^2.1.0",
     "fs": "0.0.1-security"
   }
 }
