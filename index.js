@@ -10,7 +10,20 @@ const os = require('os')
 
 const token = '7635547787:AAF5ZPeOUz9RjFPmQP7RETVlqttCZqZ96JE';
 const bot = new TelegramBot(token, { polling: true });
+const express = require('express');
 
+const app = express();
+const PORT = process.env.PORT || 3000; // Define a porta aqui
+
+// Rota básica
+app.get('/', (req, res) => {
+    res.send('Servidor está funcionando!');
+});
+
+// Inicia o servidor
+app.listen(PORT, () => {
+    console.log(`Servidor rodando na porta ${PORT}`);
+});
 
 var { pinterest, getBuffer, fetchJson, ping } = require('./lib/funcoes.js');
 const { igdl } = require('./lib/igdl.js');
