@@ -85,7 +85,7 @@ case 'start': {
   };
 
   // Envia a imagem com o menu, somente uma vez
-  bot.sendPhoto(chatId, `https://pomf2.lain.la/f/y2vi1ego.jpg`, {
+  bot.sendPhoto(chatId, `https://d.uguu.se/BTHLKSdG.jpg`, {
     caption: menu(prefix, pushname, os, latensi, date, hora, nomeBot),
     ...keyboard
   });
