@@ -111,16 +111,16 @@ case 'start': {
   });
   break;
 }
-case 'downloads': {
-    bot.sendMessage(chatId, downloads(prefix), {
-      reply_markup: {
-        inline_keyboard: [
-          [{ text: '↩️ Voltar', callback_data: 'menu' }]
-        ]
-      }
-    });
-    break;
-  }
+case 'downloads': // Exibe o submenu de Downloads
+      bot.sendMessage(chatId, downloads(prefix), {
+        reply_markup: {
+          inline_keyboard: [
+            [{ text: '↩️ Voltar', callback_data: 'menu' }]
+          ]
+        }
+      });
+      break;
+
 case 'ping': {
 
 try {
