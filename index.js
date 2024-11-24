@@ -380,7 +380,75 @@ if (!audioUrl) {
 bot.sendMessage(chatId, "❌ Não foi possível obter o link de áudio.");
 break;
 }
-
+case 'gerarlink':
+case 'uplink':
+case 'imgpralink':
+try {
+let media, type, mimetype
+if (isQuotedSticker || (info.message.stickerMessage && info.message.stickerMessage.mimetype === 'image/webp')) {
+media = isQuotedSticker ? info.message.extendedTextMessage.contextInfo.quotedMessage.stickerMessage : info.message.stickerMessage
+mimetype = 'image/webp'
+type = 'sticker'
+} else if (isQuotedImage || isImage) {
+media = isQuotedImage ? info.message.extendedTextMessage.contextInfo.quotedMessage.imageMessage : info.message.imageMessage
+mimetype = media.mimetype
+type = 'image'
+} else if (isQuotedVideo || isVideo) {
+media = isQuotedVideo ? info.message.extendedTextMessage.contextInfo.quotedMessage.videoMessage : info.message.videoMessage
+mimetype = media.mimetype
+type = 'video'
+} else if (isQuotedAudio || isAudio) {
+media = isQuotedAudio ? info.message.extendedTextMessage.contextInfo.quotedMessage.audioMessage : info.message.audioMessage
+mimetype = media.mimetype
+type = 'audio'
+} else if (isQuotedDocument || isDocument) {
+media = isQuotedDocument ? info.message.extendedTextMessage.contextInfo.quotedMessage.documentMessage : info.message.documentMessage
+mimetype = media.mimetype
+type = mimetype.split('/')[0]
+} else {
+return reply('❌ Marque uma Imagem, Vídeo, Áudio, Sticker ou Documento.')
+}
+const ext = mimetype.split('/').pop()
+const validExtensions = { mpeg: 'mp3', m4a: 'mp3' }
+const finalExt = validExtensions[ext] || ext
+const tempFile = `temp_${Date.now()}.${finalExt}`
+const fileBuffer = await getFileBuffer(media, type)
+fs.writeFileSync(tempFile, fileBuffer)
+console.log(`🟢 Enviando arquivo para a API: ${tempFile}`)
+const FormData = require('form-data')
+const form = new FormData()
+form.append('file', fs.createReadStream(tempFile))
+const response = await axios.post('https://zero-two.info/upload', form, {
+headers: { ...form.getHeaders() }
+})
+if (!response || !response.data || !response.data.fileUrl) {
+throw new Error('❌ Sem resposta válida da API de upload.')
+}
+const fileUrl = response.data.fileUrl
+const fileExtension = fileUrl.split('.').pop()
+if (fileExtension === 'webp' && type === 'sticker') {
+reply(`📄 Sticker identificado, gerando link.\n\n🔗 *LINK:* ${fileUrl}`)
+bot.sendMessage(from, { sticker: fileBuffer }, { quoted: info })
+} else if (['jpg', 'jpeg', 'png', 'gif'].includes(fileExtension)) {
+reply('🖼️ Imagem identificado, gerando link.')
+bot.sendMessage(from, { image: fileBuffer, caption: `🔗 *LINK:* ${fileUrl}` }, { quoted: info })
+} else if (['mp4'].includes(fileExtension)) {
+reply('🎥 Video identificado, gerando link.')
+bot.sendMessage(from, { video: fileBuffer, caption: `🔗 *LINK:* ${fileUrl}` }, { quoted: info })
+} else if (['mp3', 'wav'].includes(fileExtension)) {
+reply(`🎵 Audio identificado, gerando link.\n\n🔗 *LINK:* ${fileUrl}`)
+bot.sendMessage(from, { audio: { url: fileUrl }, mimetype: "audio/mpeg", ptt: true }, { quoted: info })
+} else {
+reply('🗂 Arquivo/Documento identificado, gerando link.')
+bot.sendMessage(from, { document: fileBuffer, caption: `🔗 *LINK:* ${fileUrl}`, mimetype, fileName: `arquivo.${fileExtension}` }, { quoted: info })
+}
+console.log(`🟢 Arquivo enviado com sucesso: ${fileUrl}`)
+fs.unlinkSync(tempFile)
+} catch (error) {
+console.error('❌ Erro no upload:', error)
+reply('❌ Ocorreu um erro durante o upload.')
+}
+break
 // VERIFICAÇÃO DE DIRETÓRIO 
 if (!fs.existsSync('./downloads')) {
 fs.mkdirSync('./downloads');
