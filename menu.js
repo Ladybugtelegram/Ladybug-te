@@ -6,7 +6,7 @@ return `
 ┃│ ${latensi.toFixed(4)}
 ┃│ ᴅɪsᴘᴏsɪᴛɪᴠᴏ: ${os.platform()}
 ┃│ ᴅᴀᴛᴀ : ${date} 
-┃│ ʜᴏsᴛ : luminacloud.com.br
+┃│ ʜᴏsᴛ : render.com
 ┃│ ᴜꜱᴜᴀʀɪᴏ: ${pushname}
 ┃╰──────────────
 ┗━━━━━━━━━━━━━━━━━━━
