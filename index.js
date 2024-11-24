@@ -7,7 +7,8 @@ const cfonts = require('cfonts')
 const moment = require('moment-timezone')
 const speed = require('performance-now')
 const os = require('os')
-
+// Importa o menu de downloads
+const { downloads } = require('./downloads');
 const token = '7635547787:AAF5ZPeOUz9RjFPmQP7RETVlqttCZqZ96JE';
 const bot = new TelegramBot(token, { polling: true });
 const express = require('express');
@@ -110,6 +111,16 @@ case 'start': {
   });
   break;
 }
+case 'downloads': {
+    bot.sendMessage(chatId, downloads(prefix), {
+      reply_markup: {
+        inline_keyboard: [
+          [{ text: '↩️ Voltar', callback_data: 'menu' }]
+        ]
+      }
+    });
+    break;
+  }
 case 'ping': {
 
 try {
