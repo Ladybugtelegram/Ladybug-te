@@ -89,10 +89,16 @@ case 'start': {
   const keyboard = {
     reply_markup: {
       inline_keyboard: [
-        [{ text: '🔊 PLAY', callback_data: 'play' }],
-        [{ text: '🕵🏻‍♂️ DONO 🕵🏻‍♂️', callback_data: 'button3' }],
-        [{ text: '🖼 WALLPAPER', callback_data: 'wallpaper' }],
-        [{ text: '🎮 JOGOS', callback_data: 'games' }]
+        [{ text: '🔊 Downloads', callback_data: 'downloads' }],
+        [{ text: '🕵🏻‍♂️ Consultas', callback_data: 'consultas' }],
+        [{ text: '🖼 wallpapers', callback_data: 'wallpapers' }],
+        [{ text: '🏯 canvas', callback_data: 'dono' }],
+        [{ text: '👨 Adm ', callback_data: 'adm' }],
+        [{ text: '🤡 Brincadeiras', callback_data: 'brincadeiras' }],
+        [{ text: '⚙️ Ferramentas', callback_data: 'ferramentas' }],
+        [{ text: '🎮 Jogos', callback_data: 'jogos' }],
+        [{ text: '🔞 +18', callback_data: '+18' }],
+        [{ text: '⚡ ping', callback_data: 'ping' }]
       ]
     }
   };
@@ -435,35 +441,10 @@ bot.sendMessage(chatId, "❌ Ocorreu um erro ao processar o vídeo. Tente novame
 break;
 }
 
-case data === 'button2': {
-bot.sendMessage(chatId, menu(prefix, pushname, os, latensi, date, hora, nomeBot), {
-reply_markup: { inline_keyboard: [[{ text: 'MENU', callback_data: 'mennu' }]] }});
-break;
-}
 
-case data === 'button1': {
-bot.sendMessage(chatId, nsfw(prefix, nomeBot, pushname), {
-reply_markup: { inline_keyboard: [[{ text: 'MENU', callback_data: 'mennu' }]] }});
-break;
-}
-
-case data === 'button3': {
-bot.sendMessage(chatId, master, {
-reply_markup: { inline_keyboard: [[{ text: 'MENU', callback_data: 'mennu' }]] }});
-break;
-}
-
-case data === 'mennu': {
-bot.sendMessage(chatId, menu(prefix, pushname, os, latensi, date, hora, nomeBot), {
-reply_markup: { inline_keyboard: [
-[{ text: 'TESTE', callback_data: 'button1' }, { text: 'TESTE', callback_data: 'button2' }],
-[{ text: '🕵🏻‍♂️ DONO 🕵🏻‍♂️', callback_data: 'button3' }],
-]}});
-break;
-}
 
 default: {
-bot.sendMessage(chatId, "❓ Comando não reconhecido.");
+bot.sendMessage(chatId, "❓ esseComando não reconhecido.");
 break;
 }
 }
