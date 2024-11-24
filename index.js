@@ -447,7 +447,8 @@ fs.unlinkSync(tempFile)
 console.error('❌ Erro no upload:', error)
 reply('❌ Ocorreu um erro durante o upload.')
 }
-break
+break;
+		
 // VERIFICAÇÃO DE DIRETÓRIO 
 if (!fs.existsSync('./downloads')) {
 fs.mkdirSync('./downloads');
