@@ -380,8 +380,7 @@ if (!audioUrl) {
 bot.sendMessage(chatId, "❌ Não foi possível obter o link de áudio.");
 break;
 }
-case 'gerarlink':
-case 'uplink':
+
 case 'imgpralink':
 try {
 let media, type, mimetype
